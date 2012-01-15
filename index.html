@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title></title>
+        
+        <script src="scripts/Helpers.js"></script>
+        <script src="scripts/Constants.js"></script>
+        <script src="scripts/KeyEvent.js"></script>
+        
+        <script src="scripts/AnimatedImage.js"></script>
+        <script src="scripts/AnimatedCharacterImage.js"></script>
+        <script src="scripts/GameCharacter.js"></script>
+        <script src="scripts/GameArea.js"></script>
+        <script src="scripts/GameInstance.js"></script>
+        
+        <script>
+            
+            MC.DEBUG_MODE = 1;
+            window.currentGame = null;
+            
+            window.onload = function() {
+                
+                var area = new MC.GameArea();
+                
+                currentGame = new MC.GameInstance('main', area);
+                currentGame.setCurrentArea(area);
+                
+                var charsets = {
+                    'chara1': new MC.AnimatedCharacterImage('chara1')
+                };
+
+                var pc = new MC.GameCharacter(charsets.chara1);
+                currentGame.setPC(pc);
+                currentGame.redraw();
+                
+            };
+            
+            window.onkeydown = function(e) {
+              var keyCode = ('which' in e) ? e.which : e.keyCode;
+              if(keyCode === KeyEvent.DOM_VK_W) {
+                  currentGame.movePC(MC.Enums.Directions.UP);
+              }
+              else if(keyCode === KeyEvent.DOM_VK_A) {
+                  currentGame.movePC(MC.Enums.Directions.LEFT);
+              }
+              else if(keyCode === KeyEvent.DOM_VK_S) {
+                  currentGame.movePC(MC.Enums.Directions.DOWN);
+              }
+              else if(keyCode === KeyEvent.DOM_VK_D) {
+                  currentGame.movePC(MC.Enums.Directions.RIGHT);
+              }
+              currentGame.redraw();
+            };
+            
+        </script>
+        <style>
+            body {
+                text-align: center;
+            }
+            canvas#main {
+                border: 2px dashed gray;
+                margin: 50px auto 0 auto;
+            }
+            img.hidden {
+                display:none;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="main" width="600" height="400">
+            <p>You're using an outdated browser. Download the current version of Mozilla Firefox, Google Chrome, Internet Explorer, or Safari.</p>
+        </canvas>
+        
+        <img src="images/character.png" id="chara1" class="hidden" />
+    </body>
+</html>
