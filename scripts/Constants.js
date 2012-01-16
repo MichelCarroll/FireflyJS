@@ -10,3 +10,8 @@ MC.Enums.Directions = {
   RIGHT: 2,
   UP: 3
 };
+
+MC.Enums.KeyBehavious = {
+  KEY_UP: 0,
+  KEY_DOWN: 1  
+};

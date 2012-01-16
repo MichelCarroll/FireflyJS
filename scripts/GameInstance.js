@@ -7,6 +7,7 @@ var MC = MC || {};
 MC.GameInstance = function(canvasId, area) {
     this.setCanvas.call(this, canvasId);
     this.setCurrentArea.call(this, area);
+    this.inputController = new MC.InputController(this);
 };
 
 MC.GameInstance.prototype = function() {
@@ -43,13 +44,19 @@ MC.GameInstance.prototype = function() {
     redraw = function() {
         this.drawingContext.clearRect(0,0, this.canvas.width, this.canvas.height);
         this.currentArea.updateDrawings(this.drawingContext);
-    }
+    },
+    
+    getInputController = function() {
+        return this.inputController;
+    };
     
     //PUBLIC MEMBERS
     return {
         setPC: setPC,
         setCanvas: setCanvas,
         setCurrentArea: setCurrentArea,
+        
+        getInputController: getInputController,
         
         redraw: redraw,
         movePC: movePC

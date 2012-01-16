@@ -13,6 +13,7 @@
         <script src="scripts/GameCharacter.js"></script>
         <script src="scripts/GameArea.js"></script>
         <script src="scripts/GameInstance.js"></script>
+        <script src="scripts/InputController.js"></script>
         
         <script>
             
@@ -24,7 +25,6 @@
                 var area = new MC.GameArea();
                 
                 currentGame = new MC.GameInstance('main', area);
-                currentGame.setCurrentArea(area);
                 
                 var charsets = {
                     'chara1': new MC.AnimatedCharacterImage('chara1')
@@ -32,6 +32,7 @@
 
                 var pc = new MC.GameCharacter(charsets.chara1);
                 currentGame.setPC(pc);
+                
                 currentGame.redraw();
                 
             };
