@@ -13,7 +13,7 @@ MC.GameInstance = function(canvasId, area) {
 MC.GameInstance.prototype = function() {
 
     //PRIVATE MEMBERS
-    var setPC = function(gameChar) {
+    var setPlayerCharacter = function(gameChar) {
         MC.assertHasMethod(gameChar, 'move');
         this.playerChar = gameChar;
         this.currentArea.pushDynamicDrawable(gameChar);
@@ -52,7 +52,7 @@ MC.GameInstance.prototype = function() {
     
     //PUBLIC MEMBERS
     return {
-        setPC: setPC,
+        setPlayerCharacter: setPlayerCharacter,
         setCanvas: setCanvas,
         setCurrentArea: setCurrentArea,
         
